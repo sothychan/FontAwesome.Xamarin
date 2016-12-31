@@ -24,6 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.Reflection;
 using UIKit;
 
 namespace FontAwesomeXamarin
@@ -33,7 +34,10 @@ namespace FontAwesomeXamarin
 		public static UIFont Font (nfloat size) {
 			return UIFont.FromName ("FontAwesome", size);
 		}
-			
+
+		public static string GetIcon(string propName) => 
+			(string)typeof(FontAwesome).GetField(propName, BindingFlags.Public | BindingFlags.Static).GetValue(null);
+
 		public static string FAGlass = "\uf000";
 		public static string FAMusic = "\uf001";
 		public static string FASearch = "\uf002";
